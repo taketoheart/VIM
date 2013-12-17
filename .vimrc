@@ -1,16 +1,35 @@
+"set shiftwidth and tabstop 4
+set sw=4
+set ts=4
+"开启自动缩进检测，下一行根据python语言的建议（将tab展成四个空格）进行专门设置
+filetype indent on
+autocmd FileType python setlocal et sta sw=4 sts=4
+
+
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
 
-set ts=4
 set expandtab
 %retab!
 
+"set mapleader
+let mapleader=","
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+    syntax on
+    set hlsearch
+    " highlight Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
+endif
+
 " Vundle {{{
 filetype on
-filetype plugin indent off
+filetype plugin on
+filetype indent on 
+"filetype plugin indent off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -30,7 +49,7 @@ nmap <F9> :TlistToggle<CR>
 " 状态栏美观
 set nocompatible 
 set t_Co=256
-Bundle 'vim-powerline'
+Bundle 'Lokaltog/vim-powerline'
 set laststatus=2
 let g:Powerline_colorscheme='solarized256'
 
@@ -73,8 +92,21 @@ Bundle 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1   " 在左注释之后/右注释之前留有空格
 
 " 代码对齐
-" Bundle 'Eivy/Align'
-" 原有,tt冲突
-" map <Leader>tT <Plug>AM_tt
+Bundle 'Eivy/Align'
+map <Leader>tt <Plug>AM_tt
+
+" 给词加环绕符号
+Bundle 'tpope/vim-surround'
+" 使用.重复命令
+Bundle 'tpope/vim-repeat'
+
+" 自动补全引号，括号
+Bundle 'Raimondi/delimitMate'
+
+" 快速移动
+Bundle 'Lokaltog/vim-easymotion'
+
+" 语法及风格检查，支持多种语言 
+Bundle 'scrooloose/syntastic'
 
 " }}}
